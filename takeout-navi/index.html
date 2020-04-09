@@ -213,14 +213,6 @@ h2 {
 </style>
 <script>"use strict"
 
-/*
-const makeTextWithLink = function(s) {
-  const reg = new RegExp("((https?)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+))", "g")
-  //return s.replace(reg, "<a href='$1' target='_blank'>$1</a>")
-  return s.replace(reg, "<a href='$1'>$1</a>")
-}
-*/
-
 window.onload = async function() {
 	const data = await (await fetch('data/takeout.json')).json()
 	console.log(data)
@@ -229,8 +221,6 @@ window.onload = async function() {
 	const map = initMap('mapid')
 	map.setZoom(16)
 	map.panTo([ 36.5780,136.6482 ]) // 金沢駅
-
-//	map.addIcon(35.944571, 136.186228 , "Hana道場", "icon/hanadojo.png", 64)
 
 	const addTag = function(tag) {
 		const div = create('div')
@@ -241,28 +231,6 @@ window.onload = async function() {
 			show()
 		}
 	}
-	/*
-	const tags = []
-	for (const d of data) {
-		//const tag2 = [ d['分野'], d['キーワード'] ]
-		const tag2 = d['分野'].split(',')
-		for (let tag of tag2) { 
-			tag = tag.trim()
-			if (tag == '教育・学習支援')
-				tag = '教育、学習支援'
-			if (tags.indexOf(tag) == -1) {
-				tags.push(tag)
-			}
-		}
-	}
-	tags.sort()
-	for (const tag of tags) {
-		if (tag.indexOf("その他") == -1)
-			addTag(tag)
-	}
-	addTag('その他')
-	//addTag('テレワーク')
-	*/
 	let shows = []
 
 	let icons = []
@@ -296,18 +264,7 @@ window.onload = async function() {
 		let hash = key
 		let allflg = true
 		let alloffflg = true
-		/*
-		for (const chk in chktarget) {
-			const chkbox = document.getElementById(chk)
-			if (chkbox.checked) {
-				const text = chkbox.parentElement.textContent
-				hash += " " + text
-				alloffflg = false
-			} else {
-				allflg = false
-			}
-		}
-		*/
+
 		if (allflg)
 			hash = key
 		document.location.hash = hash.length > 0 ? '#' + encodeURIComponent(hash) : ""
@@ -315,12 +272,6 @@ window.onload = async function() {
 		const maxcnt = 20
 		const lls = []
 
-		/*
-		for (const icon of icons) {
-			map.removeLayer(icon)
-		}
-		icons = []
-		*/
 		shows = []
 		A: for (const d of data) {
 			if (key) {
@@ -345,20 +296,6 @@ window.onload = async function() {
 			cnt++
 			const div = create('div')
 			div.className = "item"
-			/*
-/*
-name: "グリルセピア"
-description: "<img src="https://doc-0o-4s-mymaps.googleusercontent.com/untrusted/hostedimage/vmuuf5hmshbjpc7eqpbcohjrr4/ttns35ec0ehkacsf30km433fng/1586233870000/oaYxLwTuCaledjvr3P62xz3pLnk4xBsZ/03513505763626667758/5AF2TALpE11tXhpr0Iz5dW8ev-E1XlrsCv5brV5_85zfTUD7CEchJt1AbN8m427_2E4CjXjDI03QTDRr80nteWizCI2MsioNmFLyWNEOqftlTCJKrYNmFHKRFagH-1syvaAne-ctpCPjZ0n0kLlD0Tm4mbTMADmkypkoSk2BMf0wlxjRxSmXZ-a16TupZim15Qvzhm_9I8P87_myqVI1nO5wxxXzv7HpNtbUFmyOzjJn4r1tsxo7T-UAeWSkJbqZAK4qZCd23gM_7kclIs56x54m9DWyti0fQLg?session=0&fife" height="200" width="auto" /><br><br><br><br><img src="https://doc-04-4s-mymaps.googleusercontent.com/untrusted/hostedimage/vmuuf5hmshbjpc7eqpbcohjrr4/vemc8dt05jgma8jnvb4632mnic/1586233870000/oaYxLwTuCaledjvr3P62xz3pLnk4xBsZ/03513505763626667758/5AF2TALriSslcaIC7dSb73MZivabmd3zhzMkWcc0aUGo_-WFVgvWEdqCosW1T5kZpmq4yj6M2Kb6Eeh-zY21ZI2h7EkZrLgOe8aAxHnQyCTif-4rObsrUVmMG0KXVJMs2sLt9N5gayKbYHT5enFVCJz3HLdlzXALMVB-SbUUMCmXwnzffsAu6UFq16vHdlZFeeHKBBR9q9B1salP2cDY_D1Z8BrmD8JRiiEDF_uxUVYUUuaGjCxiHyOcckvMidI1Vm6jwJoRv7TcxR9bHFwYRLNRSItMq6AHrqg?session=0&fife" height="200" width="auto" />"
-styleUrl: "#icon-1577-E65100"
-ExtendedData/Data/value: "https://doc-0o-4s-mymaps.googleusercontent.com/untrusted/hostedimage/vmuuf5hmshbjpc7eqpbcohjrr4/ttns35ec0ehkacsf30km433fng/1586233870000/oaYxLwTuCaledjvr3P62xz3pLnk4xBsZ/03513505763626667758/5AF2TALpE11tXhpr0Iz5dW8ev-E1XlrsCv5brV5_85zfTUD7CEchJt1AbN8m427_2E4CjXjDI03QTDRr80nteWizCI2MsioNmFLyWNEOqftlTCJKrYNmFHKRFagH-1syvaAne-ctpCPjZ0n0kLlD0Tm4mbTMADmkypkoSk2BMf0wlxjRxSmXZ-a16TupZim15Qvzhm_9I8P87_myqVI1nO5wxxXzv7HpNtbUFmyOzjJn4r1tsxo7T-UAeWSkJbqZAK4qZCd23gM_7kclIs56x54m9DWyti0fQLg?session=0&fife https://doc-04-4s-mymaps.googleusercontent.com/untrusted/hostedimage/vmuuf5hmshbjpc7eqpbcohjrr4/vemc8dt05jgma8jnvb4632mnic/1586233870000/oaYxLwTuCaledjvr3P62xz3pLnk4xBsZ/03513505763626667758/5AF2TALriSslcaIC7dSb73MZivabmd3zhzMkWcc0aUGo_-WFVgvWEdqCosW1T5kZpmq4yj6M2Kb6Eeh-zY21ZI2h7EkZrLgOe8aAxHnQyCTif-4rObsrUVmMG0KXVJMs2sLt9N5gayKbYHT5enFVCJz3HLdlzXALMVB-SbUUMCmXwnzffsAu6UFq16vHdlZFeeHKBBR9q9B1salP2cDY_D1Z8BrmD8JRiiEDF_uxUVYUUuaGjCxiHyOcckvMidI1Vm6jwJoRv7TcxR9bHFwYRLNRSItMq6AHrqg?session=0&fife"
-ExtendedData/Data/_name: "gx_media_links"
-longitude: "136.1807938"
-latitude: "35.9672856"
-altitude: "0"
-flg_takeout: "1"
-flg_delivery: ""
-*/
-// <ruby>${d['http://xmlns.com/foaf/0.1/#name']}<rt>${d['name_yomi']}</rt></ruby>
 			div.innerHTML = `
 				<a name=${encodeURIComponent(d.name)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.name)}>${d.name}</a></h2>
@@ -366,28 +303,6 @@ flg_delivery: ""
 				<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
 				</div>
 			`
-			/*
-				<div class=from>提供: ${d['企業等']}</div>
-				<div class=target>対象: ${d['対象者']}</div>
-				<div class=fee>費用等: ${d['無料/有料']}</div>
-				<div class=span>提供期間: ${d['開始日']}〜${d['終了日']} ${d['期間備考']}</div>
-				<div class=id>情報源: ${d['情報源']} (発表日付 ${d['発表日付']})</div>
-
-				<div class=tags>
-				<div class=type>${d['分野']}</div>
-				<div class=service>${d['サービス分類']}</div>
-				<div class=keyword>${d['キーワード']}</div>
-			*/
-			/*
-			const SET = { '.type': '分野', '.service': 'サービス分類', '.keyword': 'キーワード' }
-			for (const s in SET) {
-				const sname = SET[s]
-				div.querySelector(s).onclick = function() {
-					searchbox.value = d[sname]
-					show()
-				}
-			}
-			*/
 			main.appendChild(div)
 			shows.push(d.name)
 
@@ -402,14 +317,8 @@ flg_delivery: ""
 				}
 			}
 
-
 			const ll = [ d.latitude, d.longitude ]
 			lls.push(ll)
-
-
-			//if (cnt == maxcnt)
-			//	break
-
 		}
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
@@ -431,25 +340,8 @@ flg_delivery: ""
 	let chkflg = false
 	if (document.location.hash.length > 1) {
 		let key = decodeURIComponent(document.location.hash.substring(1))
-		/*
-		for (const chk in chktarget) {
-			const chkbox = document.getElementById(chk)
-			const lbl = chkbox.parentElement.textContent
-			if (key.endsWith(" " + lbl)) {
-				key = key.substring(0, key.length - 1 - lbl.length)
-				chkbox.checked = true
-				chkflg = true
-			}
-		}
-		*/
 		searchbox.value = key
 	}
-	/*
-	for (const chk in chktarget) {
-		const chkbox = document.getElementById(chk)
-		chkbox.onchange = show
-	}
-	*/
 	takeout.onchange = show
 	delivery.onchange = show
 
