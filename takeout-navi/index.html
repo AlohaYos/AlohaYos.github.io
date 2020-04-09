@@ -215,12 +215,14 @@ h2 {
 
 window.onload = async function() {
 	const data = await (await fetch('data/takeout.json')).json()
+	// jsonデータ "name","description","styleUrl","ExtendedData/Data/value","ExtendedData/Data/_name","longitude","latitude","altitude","flg_takeout","flg_delivery"
+
 	console.log(data)
 	shuffle(data)
 
 	const map = initMap('mapid')
-	map.setZoom(16)
-	map.panTo([ 36.5780,136.6482 ]) // 金沢駅
+	map.setZoom(15)
+	map.panTo([ 36.5780, 136.6482 ]) // 金沢駅
 
 	const addTag = function(tag) {
 		const div = create('div')
