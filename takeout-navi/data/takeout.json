@@ -1,3 +1,4 @@
 [
-	{ "name":"とり白菜さぶろうべい", "description":"さぶろうべいさん。受け取りは、各店舗にて。<br>住所: 石川県かほく市高松丁42<br>電話: 076-281-0529<br>ホームページ: http://saburoubei.jp<br>SNS:   ", "longitude":"136.71506", "latitude":"36.75531", "flg_takeout":"1", "flg_delivery":"0" }
+	{ "name":"とり白菜さぶろうべい", "description":"さぶろうべいさん。受け取りは、各店舗にて。<br>住所: 石川県かほく市高松丁42<br>電話: <a href="tel:076-281-0529">076-281-0529</a><br>ホームページ: <a href="http://saburoubei.jp">http://saburoubei.jp</a><br>SNS: <a href=""></a>  ", "longitude":"136.71506", "latitude":"36.75531", "flg_takeout":"1", "flg_delivery":"0" },
+	{ "name":"サルーベジ", "description":"いろいろなお惣菜をテイクアウトできます。<br>住所: 石川県 小松市沖町ツ93<br>電話: <a href="tel:0761-27-5811">0761-27-5811</a><br>ホームページ: <a href="https://twitter.com/SaludVege">https://twitter.com/SaludVege</a><br>SNS: <a href="https://twitter.com/SaludVege">https://twitter.com/SaludVege</a>  ", "longitude":"136.46968", "latitude":"36.39859", "flg_takeout":"1", "flg_delivery":"0" },
 ]
