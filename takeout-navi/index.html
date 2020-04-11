@@ -347,8 +347,7 @@ window.onload = async function() {
 		}
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
-			total.textContent = total.textContent + ` 99999件`
-			/* total.textContent = total.textContent + ` ${data.length}件` */
+			total.textContent = total.textContent + ` ${data.length}件`
 	}
 	searchbox.onkeyup = searchbox.onchange = function() {
 		show()
