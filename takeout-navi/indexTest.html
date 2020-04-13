@@ -357,8 +357,10 @@ window.onload = async function() {
 				}
 			}
 
-			const ll = [ d.latitude, d.longitude ]
-			lls.push(ll)
+			if(d.latitude>0){
+				const ll = [ d.latitude, d.longitude ]
+				lls.push(ll)
+			}
 		}
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
