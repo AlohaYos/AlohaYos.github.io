@@ -225,10 +225,7 @@ h2 {
 <script>"use strict"
 
 window.onload = async function() {
-	const storeListFileUrl="https://drive.google.com/uc?id=1mhqiJqGw7HNYE9wNMTtNhiYBTzHm68zC";
-	const data = await (await fetch(storeListFileUrl)).json()
-
- 
+	const data = await (await fetch('data/StoreListTest.json')).json()
 	/*
 	 [
 	 	{
@@ -266,19 +263,21 @@ window.onload = async function() {
 	for (const d of data) {
 		const ll = [ d.latitude, d.longitude ]
 		const iconimg = d.flg_takeout ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
-		const icon = map.addIcon(ll[0], ll[1], function(e) {
-			const d = e.sourceTarget.data
-			if (shows.indexOf(d.name) >= 0) {
-				document.location.hash = '#' + encodeURIComponent(d.name)
-			} else {
-				searchbox.value = ''
-				show(true)
-				document.location.hash = '#' + encodeURIComponent(d.name)
-			}
-		}, iconimg, 48)
-		icon.data = d
-		icons.push(icon)
-		ll.push(ll)
+		if(ll[0]>0) {
+			const icon = map.addIcon(ll[0], ll[1], function(e) {
+				const d = e.sourceTarget.data
+				if (shows.indexOf(d.name) >= 0) {
+					document.location.hash = '#' + encodeURIComponent(d.name)
+				} else {
+					searchbox.value = ''
+					show(true)
+					document.location.hash = '#' + encodeURIComponent(d.name)
+				}
+			}, iconimg, 48)
+			icon.data = d
+			icons.push(icon)
+			ll.push(ll)
+		}
 	}
 	if (lls.length > 0)
 		map.fitBounds(lls)
@@ -324,13 +323,26 @@ window.onload = async function() {
 			cnt++
 			const div = create('div')
 			div.className = "item"
+
 			div.innerHTML = `
 				<a name=${encodeURIComponent(d.name)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.name)}>${d.name}</a></h2>
 				<div class=description>${d.description}</div>
-				<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
-				</div>
 			`
+			if(d.latitude>0){
+				div.innerHTML += `
+					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
+					</div>
+				`
+			}
+			else {
+				div.innerHTML += `
+					<div class=url><a href=${d.shops}>お店情報</a></div>
+					</div>
+				`
+			}
+
+
 			main.appendChild(div)
 			shows.push(d.name)
 
@@ -413,8 +425,11 @@ window.onload = async function() {
 <div id="note"></div>
 
 <div id="src">
-Data: information by courtesy of take_out_i（<a href=https://twitter.com/take_out_i>Twitter</a> / <a href=https://www.facebook.com/takeout.i/>Facebook</a>）<br>
-App：TakeOut Ishikawa - <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://github.com/alohayos>Yos</a> <a href='https://twitter.com/alohayos'>@alohayos</a>)<br>
+<small>情報の更新に努めていますが、掲載日と現時点では情報が異なっている場合もあります。ご利用の際にお店へ電話するなど再確認することをお奨めします。</small>
+<br>
+<br>
+Data: information by courtesy of take_out_i（<a href=https://twitter.com/take_out_i>Twitter</a> / <a href=https://www.facebook.com/takeout.i/>Facebook</a>）and other supporters.<br>
+App：TakeOut Ishikawa - <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://github.com/alohayos>Yos</a> <a href='https://twitter.com/alohayos'>@alohayos</a> (<a href=https://github.com/AlohaYos/alohayos.github.io>src on GitHub</a>)<br>
  　- original <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://www.code4japan.org/>Code for Fukui</a> <a href='https://fukuno.jig.jp/'>@taisukef</a> (<a href=https://github.com/code4fukui/takeoutfukui>src on GitHub</a>)<br>
 </div>
 
