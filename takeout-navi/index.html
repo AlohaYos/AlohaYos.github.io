@@ -225,7 +225,7 @@ h2 {
 <script>"use strict"
 
 window.onload = async function() {
-	const data = await (await fetch('data/StoreList.json')).json()
+	const data = await (await fetch('data/StoreListTest.json')).json()
 	/*
 	 [
 	 	{
@@ -263,19 +263,21 @@ window.onload = async function() {
 	for (const d of data) {
 		const ll = [ d.latitude, d.longitude ]
 		const iconimg = d.flg_takeout ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
-		const icon = map.addIcon(ll[0], ll[1], function(e) {
-			const d = e.sourceTarget.data
-			if (shows.indexOf(d.name) >= 0) {
-				document.location.hash = '#' + encodeURIComponent(d.name)
-			} else {
-				searchbox.value = ''
-				show(true)
-				document.location.hash = '#' + encodeURIComponent(d.name)
-			}
-		}, iconimg, 48)
-		icon.data = d
-		icons.push(icon)
-		ll.push(ll)
+		if(ll[0]>0) {
+			const icon = map.addIcon(ll[0], ll[1], function(e) {
+				const d = e.sourceTarget.data
+				if (shows.indexOf(d.name) >= 0) {
+					document.location.hash = '#' + encodeURIComponent(d.name)
+				} else {
+					searchbox.value = ''
+					show(true)
+					document.location.hash = '#' + encodeURIComponent(d.name)
+				}
+			}, iconimg, 48)
+			icon.data = d
+			icons.push(icon)
+			ll.push(ll)
+		}
 	}
 	if (lls.length > 0)
 		map.fitBounds(lls)
@@ -321,13 +323,26 @@ window.onload = async function() {
 			cnt++
 			const div = create('div')
 			div.className = "item"
+
 			div.innerHTML = `
 				<a name=${encodeURIComponent(d.name)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.name)}>${d.name}</a></h2>
 				<div class=description>${d.description}</div>
-				<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
-				</div>
 			`
+			if(d.latitude>0){
+				div.innerHTML += `
+					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
+					</div>
+				`
+			}
+			else {
+				div.innerHTML += `
+					<div class=url><a href=${d.shops} target=_blank>お店情報</a></div>
+					</div>
+				`
+			}
+
+
 			main.appendChild(div)
 			shows.push(d.name)
 
@@ -342,8 +357,10 @@ window.onload = async function() {
 				}
 			}
 
-			const ll = [ d.latitude, d.longitude ]
-			lls.push(ll)
+			if(d.latitude>0){
+				const ll = [ d.latitude, d.longitude ]
+				lls.push(ll)
+			}
 		}
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
