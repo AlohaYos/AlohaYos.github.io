@@ -34,23 +34,33 @@ function myFunction() {
       var row = index+2;
       var lon = sheet.getRange("I"+row).getValue();
       var lat = sheet.getRange("J"+row).getValue();
+      var addressFlag=true;
+      var addressStr = element[2];
+      if ( addressStr.match(/http/)){
+        addressFlag=false;
+      }
       if(lon.length<1){
         lot = initialLon;
         lan = initialLat;
         // Geocoding
         if(element[0].length){
-          var addressStr = element[2];
-          var geo = getLatLon(addressStr);
-          if(geo.length){
-            var value = geo.split(',');
-            lon = value[0];
-            lat = value[1];
-            sheet.getRange("I"+row).setFontColor('#000000');
-            sheet.getRange("J"+row).setFontColor('#000000');
+          if(addressFlag==false){
+            lon = 0;
+            lat = 0;
           }
           else {
-            sheet.getRange("I"+row).setFontColor('#FF0000');
-            sheet.getRange("J"+row).setFontColor('#FF0000');
+            var geo = getLatLon(addressStr);
+            if(geo.length){
+              var value = geo.split(',');
+              lon = value[0];
+              lat = value[1];
+              sheet.getRange("I"+row).setFontColor('#000000');
+              sheet.getRange("J"+row).setFontColor('#000000');
+            }
+            else {
+              sheet.getRange("I"+row).setFontColor('#FF0000');
+              sheet.getRange("J"+row).setFontColor('#FF0000');
+            }
           }
           
           // 緯度経度をスプレッドシートに書き込み
@@ -60,10 +70,19 @@ function myFunction() {
       }
       // JSONを作成
       var entry = {};
+      var addressStr = element[2];
+      if ( addressStr.match(/http/)){
+        addressStr = "<a href='"+addressStr+"' target=_blank>お店情報</a>";
+        entry['shops'] = element[2];
+        entry['longitude'] = ''+0;
+        entry['latitude']  = ''+0;
+      }
+      else{
+        entry['longitude'] = ''+lon;
+        entry['latitude']  = ''+lat;
+      }
       entry['name'] = element[0];
-      entry['description'] = element[1]+"<br>住所: "+element[2]+"<br>電話: <a href='tel:"+element[3]+"'>"+element[3]+"</a><br>ホームページ: <a href='"+element[4]+"' target=_blank>"+element[4]+"</a><br>SNS: <a href='"+element[5]+"' target=_blank>"+element[5]+"</a>";
-      entry['longitude'] = ''+lon;
-      entry['latitude']  = ''+lat;
+      entry['description'] = element[1]+"<br>住所: "+addressStr+"<br>電話: <a href='tel:"+element[3]+"'>"+element[3]+"</a><br>ホームページ: <a href='"+element[4]+"' target=_blank>"+element[4]+"</a><br>SNS: <a href='"+element[5]+"' target=_blank>"+element[5]+"</a>";
       entry['flg_takeout'] = '1';
       entry['flg_delivery'] = (element[6].length?'1':'0');
       list[index] = entry;
