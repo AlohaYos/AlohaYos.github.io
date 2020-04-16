@@ -28,7 +28,7 @@
 
 <style>
 body {
-	--main-color: rgb(240, 240, 240);
+	--main-color: #dc143c;
 /*	--main-color: rgb(0, 153, 0); */
 	font-family: sans-serif;
 	font-size: 1.5vmax;
@@ -46,8 +46,7 @@ body {
 h1 {
 	margin: 0;
 	padding: .2em .3em 0.1em .3em;
-	color: #dc143c;
-/*	color: white; */
+	color: white;
 	text-align: center;
 	font-size: 8vw;
 }
@@ -84,8 +83,8 @@ button {
 	font-size: 80%;
 }
 #infoEntryMessage {
-	color: black;
-	background-color: rgb(200, 200, 200);
+	color: white;
+	background-color: white;
 	text-align: center;
 	font-size: 100%;
 }
@@ -100,7 +99,6 @@ label {
 	display: inline-block;
 }
 #total {
-	color: black;
 /*	text-align: center;
 	font-size: 80%;
 	margin-bottom: .5em; */
@@ -115,9 +113,7 @@ h2 {
 	margin: 0 auto;
 }
 .item {
-	color: white;
-	background-color: #008000;
-/*	background-color: #F5F5F5; */
+	background-color: #F5F5F5;
 	padding: 1em;
 	margin: 1em;
 	line-height: 1.8em;
@@ -127,12 +123,8 @@ h2 {
 	max-width: 80vw;
 }
 .url {
-	--url-color: #dc143c;
-	color: white !important;
-	background-color: var(--url-color);
+	background-color: var(--main-color);;
 	border-radius: 2vw;
-	border-width: 4;
-	border-color: white;
 	font-weight: bold;
 	text-align: center;
 	padding: .5em;
@@ -141,8 +133,7 @@ h2 {
 .url > a {
 	display: block;
 	text-decoration: none;
-	color: white !important;
-/*	color: black !important; */
+	color: black !important;
 }
 .searchboxid {
 	text-align: center;
@@ -244,8 +235,7 @@ window.onload = async function() {
 	 	"longitude":"136.1812721",
 	 	"latitude":"35.94731",
 	 	"flg_takeout":"1",
-	 	"flg_delivery":"1"
-	 	"stores":"https://url_of_store_list.html"
+	 	"flg_delivery":""
 	 	},
 	 	・・・
 	 ]
