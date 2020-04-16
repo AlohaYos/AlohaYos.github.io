@@ -119,6 +119,10 @@ h2 {
 	margin: 1em;
 	line-height: 1.8em;
 	word-wrap: break-word;
+	border: solid 5px #ff0000;    	/* 内側の線になる一本線の枠線をひく*/
+	outline: solid 5px #0000ff;    /* 外側の線になる5pxの一本線の枠線をひく*/
+	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
+	margin: 8px;            	/* outlineの値＋outline-offsetの値*/
 }
 .item img {
 	max-width: 80vw;
@@ -326,17 +330,18 @@ window.onload = async function() {
 						continue A
 				}
 			}
+			/*
 			if (d.flg_takeout == 1 && !takeout.checked)
 				continue
 			if (d.flg_delivery == 1 && !delivery.checked)
 				continue
+			*/
 			
 			cnt++
 			const div = create('div')
 			div.className = "item"
 
 			div.innerHTML = `
-				<div class=border>
 				<a name=${encodeURIComponent(d.name)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.name)}>${d.name}</a></h2>
 				<div class=description>${d.description}</div>
@@ -344,13 +349,13 @@ window.onload = async function() {
 			if(d.latitude>0){
 				div.innerHTML += `
 					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
-					</div></div>
+					</div>
 				`
 			}
 			else {
 				div.innerHTML += `
 					<div class=url><a href=${d.shops} target=_blank>お店情報</a></div>
-					</div></div>
+					</div>
 				`
 			}
 
