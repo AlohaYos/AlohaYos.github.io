@@ -336,19 +336,20 @@ window.onload = async function() {
 			div.className = "item"
 
 			div.innerHTML = `
+				<div class=border>
 				<a name=${encodeURIComponent(d.name)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.name)}>${d.name}</a></h2>
 				<div class=description>${d.description}</div>
 			`
 			if(d.latitude>0){
 				div.innerHTML += `
-					<div class=url><div class=border><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
+					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
 					</div></div>
 				`
 			}
 			else {
 				div.innerHTML += `
-					<div class=url><div class=border><a href=${d.shops} target=_blank>お店情報</a></div>
+					<div class=url><a href=${d.shops} target=_blank>お店情報</a></div>
 					</div></div>
 				`
 			}
