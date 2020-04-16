@@ -114,11 +114,17 @@ h2 {
 	margin: 0 auto;
 }
 .item {
+	max-width: 90%;
 	background-color: #F5F5F5;
 	padding: 1em;
 	margin: 1em;
 	line-height: 1.8em;
 	word-wrap: break-word;
+	border: solid 5px var(--main-color);    	/* 内側の線になる一本線の枠線をひく*/
+	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
+	outline: solid 5px #ffffff;    /* 外側の線になる5pxの一本線の枠線をひく*/
+	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
+	margin: 8px;            	/* outlineの値＋outline-offsetの値*/
 }
 .item img {
 	max-width: 80vw;
@@ -137,6 +143,12 @@ h2 {
 	display: block;
 	text-decoration: none;
 	color: white !important;
+}
+.border{
+	border: solid 1px #ff0000;    	/* 内側の線になる一本線の枠線をひく*/
+	outline: solid 5px #0000ff;    /* 外側の線になる5pxの一本線の枠線をひく*/
+	outline-offset: 1px;        /* 内側の線になる一本線の枠線をひく*/
+	margin: 6px;            	/* outlineの値＋outline-offsetの値*/
 }
 .searchboxid {
 	text-align: center;
@@ -239,6 +251,7 @@ window.onload = async function() {
 	 	"latitude":"35.94731",
 	 	"flg_takeout":"1",
 	 	"flg_delivery":""
+	 	"stores":"https://url_of_store_list.html"
 	 	},
 	 	・・・
 	 ]
@@ -319,10 +332,12 @@ window.onload = async function() {
 						continue A
 				}
 			}
+			/*
 			if (d.flg_takeout == 1 && !takeout.checked)
 				continue
 			if (d.flg_delivery == 1 && !delivery.checked)
 				continue
+			*/
 			
 			cnt++
 			const div = create('div')
@@ -404,7 +419,7 @@ window.onload = async function() {
 <section id="mapid"></section>
 <section id='mainview'>
 
-<h1 id=title>TakeOut Ishikawa<div class=subtitle><div id=subtitle><div id=total></div></div></div></h1>
+<h1 id=title>takeout ishikawa<div class=subtitle><div id=subtitle><div id=total></div></div></div></h1>
 <div class="container">
 	<div id="infoEntryMessage">
 <center><strong><a href="https://docs.google.com/forms/d/e/1FAIpQLSdKblEgUfD5_kLHezN_mDFGYGJEXLbpoxI-M7xgI-mr7Uu6AA/viewform" target=_blank>お店の情報提供はこちらにお願いします</a></strong><center>
