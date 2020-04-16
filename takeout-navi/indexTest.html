@@ -138,6 +138,12 @@ h2 {
 	text-decoration: none;
 	color: white !important;
 }
+.border{
+	border: solid 1px #ff7f7f;    	/* 内側の線になる一本線の枠線をひく*/
+	outline: solid 5px #ff7f7f;    /* 外側の線になる5pxの一本線の枠線をひく*/
+	outline-offset: 1px;        /* 内側の線になる一本線の枠線をひく*/
+	margin: 6px;            	/* outlineの値＋outline-offsetの値*/
+}
 .searchboxid {
 	text-align: center;
 }
@@ -239,6 +245,7 @@ window.onload = async function() {
 	 	"latitude":"35.94731",
 	 	"flg_takeout":"1",
 	 	"flg_delivery":""
+	 	"stores":"https://url_of_store_list.html"
 	 	},
 	 	・・・
 	 ]
@@ -335,14 +342,14 @@ window.onload = async function() {
 			`
 			if(d.latitude>0){
 				div.innerHTML += `
-					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
-					</div>
+					<div class=url><div class=border><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
+					</div></div>
 				`
 			}
 			else {
 				div.innerHTML += `
-					<div class=url><a href=${d.shops} target=_blank>お店情報</a></div>
-					</div>
+					<div class=url><div class=border><a href=${d.shops} target=_blank>お店情報</a></div>
+					</div></div>
 				`
 			}
 
