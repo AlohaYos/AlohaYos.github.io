@@ -114,12 +114,14 @@ h2 {
 	margin: 0 auto;
 }
 .item {
+	max-width: 90%;
 	background-color: #F5F5F5;
 	padding: 1em;
 	margin: 1em;
 	line-height: 1.8em;
 	word-wrap: break-word;
-	border: solid 5px #ff7f7f;    	/* 内側の線になる一本線の枠線をひく*/
+	border: solid 5px var(--main-color);    	/* 内側の線になる一本線の枠線をひく*/
+	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
 	outline: solid 5px #ffffff;    /* 外側の線になる5pxの一本線の枠線をひく*/
 	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
 	margin: 8px;            	/* outlineの値＋outline-offsetの値*/
