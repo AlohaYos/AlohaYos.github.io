@@ -290,12 +290,12 @@ window.onload = async function() {
 		if(ll[0]>0) {
 			const icon = map.addIcon(ll[0], ll[1], function(e) {
 				const d = e.sourceTarget.data
-				if (shows.indexOf(d.datetime) >= 0) {
-					document.location.hash = '#' + encodeURIComponent(d.datetime)
+				if (shows.indexOf(d.memo) >= 0) {
+					document.location.hash = '#' + encodeURIComponent(d.memo)
 				} else {
 					searchbox.value = ''
 					show(true)
-					document.location.hash = '#' + encodeURIComponent(d.datetime)
+					document.location.hash = '#' + encodeURIComponent(d.memo)
 				}
 			}, iconimg, 48)
 			icon.data = d
