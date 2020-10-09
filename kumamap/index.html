@@ -8,9 +8,9 @@
   gtag('config', 'UA-165643145-1');
 </script>
 <meta charset="utf-8"/>
-<title>TakeOut Ishikawa #頑張ろう石川グルメ</title>
+<title>石川県クマ出没情報</title>
 <meta property="og:title" content="TakeOut Ishikawa"/>
-<meta property="og:description" content="石川県での持ち帰れるグルメナビ（テイクアウトとデリバリー） #頑張ろう石川グルメ で応援！"/>
+<meta property="og:description" content="石川県クマ出没情報！"/>
 <link rel="icon" type="image/png" href="img/takeout_icon.png">
 <link rel="apple-touch-icon" href="img/takeout_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -247,7 +247,7 @@ h2 {
 <script>"use strict"
 
 window.onload = async function() {
-	const data = await (await fetch('data/StoreList.json')).json()
+	const data = await (await fetch('data/InfoList.json')).json()
 	/*
 	 [
 	 	{
@@ -285,7 +285,7 @@ window.onload = async function() {
 	const lls = []
 	for (const d of data) {
 		const ll = [ d.latitude, d.longitude ]
-		const iconimg = d.flg_takeout ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
+		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
 		if(ll[0]>0) {
 			const icon = map.addIcon(ll[0], ll[1], function(e) {
 				const d = e.sourceTarget.data
@@ -338,12 +338,6 @@ window.onload = async function() {
 						continue A
 				}
 			}
-			/*
-			if (d.flg_takeout == 1 && !takeout.checked)
-				continue
-			if (d.flg_delivery == 1 && !delivery.checked)
-				continue
-			*/
 			
 			cnt++
 			const div = create('div')
@@ -356,13 +350,13 @@ window.onload = async function() {
 			`
 			if(d.latitude>0){
 				div.innerHTML += `
-					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
+					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>ナビ</a></div>
 					</div>
 				`
 			}
 			else {
 				div.innerHTML += `
-					<div class=url><a href=${d.shops} target=_blank>お店情報</a></div>
+					<div class=url><a href=${d.shops} target=_blank>情報</a></div>
 					</div>
 				`
 			}
@@ -389,7 +383,7 @@ window.onload = async function() {
 		}
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
-			total.textContent = '石川県のお持ち帰りグルメまとめてます #頑張ろう石川グルメ' + ` ${data.length}件`
+			total.textContent = '石川県のクマ出没情報' + ` ${data.length}件`
 	}
 	searchbox.onkeyup = searchbox.onchange = function() {
 		show()
@@ -436,11 +430,6 @@ window.onload = async function() {
 </div>
 <div id="toptags" class=tags></div>
 <div id="checekboxes">
-	<!--
-	<div id=total></div>
-	<label><input type=checkbox id=takeout checked>テイクアウト</label>
-	<label><input type=checkbox id=delivery checked>デリバリー</label>
-	 -->
 	<label><input type=hidden id=takeout checked></label>
 	<label><input type=hidden id=delivery checked></label>
 	<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Falohayos.github.io%2Ftakeout-navi%2F&layout=button_count&size=small&appId=184215061602479&width=80&height=20" width="80" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
@@ -452,7 +441,7 @@ window.onload = async function() {
 <div id="note"></div>
 
 <div id="src">
-<small>情報の更新に努めていますが、掲載日と現時点では情報が異なっている場合もあります。ご利用の際にお店へ電話するなど再確認することをお奨めします。</small>
+<small>情報の更新に努めていますが、掲載日と現時点では情報が異なっている場合もあります。</small>
 <br>
 <br>
 Data: information by courtesy of take_out_i（<a href=https://twitter.com/take_out_i>Twitter</a> / <a href=https://www.facebook.com/takeout.i/>Facebook</a>）and other supporters.<br>
