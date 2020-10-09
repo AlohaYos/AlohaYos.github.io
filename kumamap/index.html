@@ -264,7 +264,7 @@ window.onload = async function() {
 	 */
 	
 	console.log(data)
-	shuffle(data)
+//	shuffle(data)
 
 	const map = initMap('mapid')
 	map.setZoom(15)
@@ -285,16 +285,17 @@ window.onload = async function() {
 	const lls = []
 	for (const d of data) {
 		const ll = [ d.latitude, d.longitude ]
-		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
+		const iconimg = 'img/icon_takeout.png'
+//		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
 		if(ll[0]>0) {
 			const icon = map.addIcon(ll[0], ll[1], function(e) {
 				const d = e.sourceTarget.data
-				if (shows.indexOf(d.name) >= 0) {
-					document.location.hash = '#' + encodeURIComponent(d.name)
+				if (shows.indexOf(d.datetime) >= 0) {
+					document.location.hash = '#' + encodeURIComponent(d.datetime)
 				} else {
 					searchbox.value = ''
 					show(true)
-					document.location.hash = '#' + encodeURIComponent(d.name)
+					document.location.hash = '#' + encodeURIComponent(d.datetime)
 				}
 			}, iconimg, 48)
 			icon.data = d
@@ -344,10 +345,11 @@ window.onload = async function() {
 			div.className = "item"
 
 			div.innerHTML = `
-				<a name=${encodeURIComponent(d.name)} class=linka>
-				<h2><a href=#${encodeURIComponent(d.name)}>${d.memo}</a></h2>
+				<a name=${encodeURIComponent(d.memo)} class=linka>
+				<h2><a href=#${encodeURIComponent(d.memo)}>${d.memo}</a></h2>
 				<div class=description>${d.infotype}</div>
 			`
+/*
 			if(d.latitude>0){
 				div.innerHTML += `
 					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>ナビ</a></div>
@@ -360,7 +362,7 @@ window.onload = async function() {
 					</div>
 				`
 			}
-
+*/
 
 			main.appendChild(div)
 			shows.push(d.name)
@@ -408,7 +410,7 @@ window.onload = async function() {
 
 	show()
 	btngacha.onclick = () => {
-		shuffle(data)
+//		shuffle(data)
 		show()
 	}
 }
