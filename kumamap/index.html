@@ -288,7 +288,7 @@ window.onload = async function() {
 		const iconimg = 'img/icon_takeout.png'
 //		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
 		if(ll[0]>0) {
-			const icon = map.addIcon(ll[0], ll[1], function(e) {
+			const icon = map.addIcon(ll[0], ll[1], "YOS", function(e) {
 				const d = e.sourceTarget.data
 				if (shows.indexOf(d.indexNo) >= 0) {
 					document.location.hash = '#' + encodeURIComponent(d.indexNo)
@@ -367,7 +367,7 @@ window.onload = async function() {
 				for (const icon of icons) {
 					if (icon.data.indexNo == indexNo) {
 						const ll = icon.getLatLng()
-						map.setView(ll, 17)
+						map.setView(ll, 16)
 						break
 					}
 				}
