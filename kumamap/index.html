@@ -325,6 +325,7 @@ window.onload = async function() {
 
 		shows = []
 		A: for (const d of data) {
+/*
 			if (key) {
 				const keys = key.replace(/　/g, ' ').split(' ')
 				for (const k of keys) {
@@ -339,13 +340,14 @@ window.onload = async function() {
 						continue A
 				}
 			}
+*/
 			
 			cnt++
 			const div = create('div')
 			div.className = "item"
 
 			div.innerHTML = `
-				<a name=${encodeURIComponent(d.indexNo)} class=linka>
+				<a name=${encodeURIComponent(d.memo)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.memo}</a></h2>
 				<div class=description>${d.datetime}</div>
 			`
