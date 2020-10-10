@@ -346,7 +346,7 @@ window.onload = async function() {
 
 			div.innerHTML = `
 				<a name=${encodeURIComponent(d.indexNo)} class=linka>
-				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.indexNo}</a></h2>
+				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.memo}</a></h2>
 				<div class=description>${d.infotype}</div>
 			`
 
@@ -356,13 +356,6 @@ window.onload = async function() {
 					</div>
 				`
 			}
-			else {
-				div.innerHTML += `
-					<div class=url><a href=${d.shops} target=_blank>情報</a></div>
-					</div>
-				`
-			}
-
 
 			main.appendChild(div)
 			shows.push(d.name)
