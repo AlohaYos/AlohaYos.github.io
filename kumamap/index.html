@@ -347,7 +347,7 @@ window.onload = async function() {
 			div.innerHTML = `
 				<a name=${encodeURIComponent(d.indexNo)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.memo}</a></h2>
-				<div class=description>${d.infotype} ${d.latitude} ${d.longitude}</div>
+				<div class=description>${d.datetime}</div>
 			`
 
 			if(d.latitude>0){
