@@ -248,20 +248,6 @@ h2 {
 
 window.onload = async function() {
 	const data = await (await fetch('data/InfoList.json')).json()
-	/*
-	 [
-	 	{
-	 	"name":"",
-	 	"description":"",
-	 	"longitude":"136.1812721",
-	 	"latitude":"35.94731",
-	 	"flg_takeout":"1",
-	 	"flg_delivery":""
-	 	"stores":"https://url_of_store_list.html"
-	 	},
-	 	・・・
-	 ]
-	 */
 	
 	console.log(data)
 //	shuffle(data)
@@ -279,6 +265,8 @@ window.onload = async function() {
 			show()
 		}
 	}
+	searchbox.value="";
+	
 	let shows = []
 
 	let icons = []
@@ -435,13 +423,17 @@ window.onload = async function() {
 
 <h1 id=title>石川県クマ出没情報<div class=subtitle><div id=subtitle><div id=total></div></div></div></h1>
 <div class="container">
+<!--
 	<div id="infoEntryMessage">
 <center><strong><a href="https://docs.google.com/forms/d/e/1FAIpQLSdKblEgUfD5_kLHezN_mDFGYGJEXLbpoxI-M7xgI-mr7Uu6AA/viewform" target=_blank>情報提供はこちらにお願いします</a></strong><center>
 	</div>
+-->
+<!--
 <div class="searchboxid">
 	<div class=sitedesc></div>
 	<input type=text id=searchbox placeholder="キーワード"><button id=btngacha>おまかせ</button>
 </div>
+-->
 <div id="toptags" class=tags></div>
 <div id="checekboxes">
 	<label><input type=hidden id=takeout checked></label>
