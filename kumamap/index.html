@@ -349,7 +349,7 @@ window.onload = async function() {
 				<h2><a href=#${encodeURIComponent(d.memo)}>${d.memo}</a></h2>
 				<div class=description>${d.infotype}</div>
 			`
-/*
+
 			if(d.latitude>0){
 				div.innerHTML += `
 					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>ナビ</a></div>
@@ -362,7 +362,7 @@ window.onload = async function() {
 					</div>
 				`
 			}
-*/
+
 
 			main.appendChild(div)
 			shows.push(d.name)
