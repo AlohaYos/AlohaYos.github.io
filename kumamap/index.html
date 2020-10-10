@@ -288,7 +288,8 @@ window.onload = async function() {
 		const iconimg = 'img/icon_takeout.png'
 //		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
 		if(ll[0]>0) {
-			const icon = map.addIcon(ll[0], ll[1], "YOS", 
+			let desc = ""+d.memo+"<br />"+d.datetime;
+			const icon = map.addIcon(ll[0], ll[1], desc, 
 			/*
 				function(e) {
 				const d = e.sourceTarget.data
