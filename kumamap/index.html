@@ -344,14 +344,14 @@ window.onload = async function() {
 				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.memo}</a></h2>
 				<div class=description>${d.datetime}</div>
 			`
-
+/*
 			if(d.latitude>0){
 				div.innerHTML += `
 					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>ナビ</a></div>
 					</div>
 				`
 			}
-
+*/
 			main.appendChild(div)
 			shows.push(d.name)
 
@@ -434,7 +434,7 @@ window.onload = async function() {
 <div class="searchboxid">
 
 	<div class=sitedesc></div>
-	<input type=hidden id=searchbox placeholder="キーワード"><button id=btngacha>おまかせ</button>
+	<input type=hidden id=searchbox placeholder="キーワード"><button id=btngacha type=hidden>おまかせ</button>
 
 </div>
 <div id="toptags" class=tags></div>
