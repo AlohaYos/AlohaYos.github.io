@@ -363,6 +363,17 @@ window.onload = async function() {
 			shows.push(d.name)
 
 			div.querySelector('h2').onclick = function(e) {
+				const indexNo = decodeURIComponent(document.location.hash.substring(1))
+				for (const icon of icons) {
+					if (icon.data.indexNo == indexNo) {
+						const ll = icon.getLatLng()
+						map.setView(ll, 17)
+						break
+					}
+				}
+			}
+/*
+			div.querySelector('h2').onclick = function(e) {
 				const name = decodeURIComponent(document.location.hash.substring(1))
 				for (const icon of icons) {
 					if (icon.data.name == name) {
@@ -372,6 +383,7 @@ window.onload = async function() {
 					}
 				}
 			}
+*/
 
 			if(d.latitude>0){
 				const ll = [ d.latitude, d.longitude ]
