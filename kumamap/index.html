@@ -119,10 +119,16 @@ h2 {
 }
 .item {
 	max-width: 90%;
-	background-color: #F5F5F5;
+	padding: 0.4em;
+	margin: 0.4em;
+	line-height: 0.8em;
+/*
+	max-width: 90%;
 	padding: 1em;
 	margin: 1em;
 	line-height: 1.8em;
+*/
+	background-color: #F5F5F5;
 	word-wrap: break-word;
 	border: solid 5px var(--main-color);    	/* 内側の線になる一本線の枠線をひく*/
 	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
@@ -167,7 +173,8 @@ h2 {
 	color: black !important;
 }
 .description {
-	margin-bottom: .8em;
+	margin-bottom: .1em;
+/*	margin-bottom: .8em; */
 }
 .tags {
 	text-align: center;
@@ -431,11 +438,6 @@ window.onload = async function() {
 <center><strong><a href="https://docs.google.com/forms/d/e/1FAIpQLSdKblEgUfD5_kLHezN_mDFGYGJEXLbpoxI-M7xgI-mr7Uu6AA/viewform" target=_blank>情報提供はこちらにお願いします</a></strong><center>
 -->
 	</div>
-<div class="searchboxid">
-	<div class=sitedesc></div>
-	<input type=hidden id=searchbox placeholder="キーワード">
-<!--	<input type=text id=searchbox placeholder="キーワード"><button id=btngacha type=hidden>おまかせ</button> -->
-</div>
 <div id="toptags" class=tags></div>
 <div id="checekboxes">
 	<label><input type=hidden id=takeout checked></label>
@@ -443,6 +445,7 @@ window.onload = async function() {
 	<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Falohayos.github.io%2Fkumamapi%2F&layout=button_count&size=small&appId=184215061602479&width=80&height=20" width="80" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
+<div class="searchboxid"><div class=sitedesc></div><input type=hidden id=searchbox placeholder="キーワード"></div>
 </div>
 
 <div id="main"></div>
