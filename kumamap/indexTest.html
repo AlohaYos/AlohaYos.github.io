@@ -1,16 +1,16 @@
 <!DOCTYPE html><html><head>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162505036-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165643145-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'UA-162505036-1');
+  gtag('config', 'UA-165643145-1');
 </script>
 <meta charset="utf-8"/>
-<title>TakeOut Ishikawa #頑張ろう石川グルメ</title>
-<meta property="og:title" content="TakeOut Ishikawa"/>
-<meta property="og:description" content="石川県での持ち帰れるグルメナビ（テイクアウトとデリバリー） #頑張ろう石川グルメ で応援！"/>
+<title>クマ出没情報</title>
+<meta property="og:title" content="Ishikawa Kuma map"/>
+<meta property="og:description" content="クマ出没情報！"/>
 <link rel="icon" type="image/png" href="img/takeout_icon.png">
 <link rel="apple-touch-icon" href="img/takeout_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -39,7 +39,7 @@ body {
 	position: fixed;
 	bottom: 0;
 	width: 100vw;
-	height: 35vh;
+	height: 50vh;
 	z-index: 1;
 	border-top: 4px solid white;
 }
@@ -119,10 +119,16 @@ h2 {
 }
 .item {
 	max-width: 90%;
-	background-color: #F5F5F5;
+	padding: 0.5em;
+	margin: 0.5em;
+	line-height: 1.0em;
+/*
+	max-width: 90%;
 	padding: 1em;
 	margin: 1em;
 	line-height: 1.8em;
+*/
+	background-color: #F5F5F5;
 	word-wrap: break-word;
 	border: solid 5px var(--main-color);    	/* 内側の線になる一本線の枠線をひく*/
 	outline-offset: 3px;        /* 内側の線になる一本線の枠線をひく*/
@@ -247,24 +253,10 @@ h2 {
 <script>"use strict"
 
 window.onload = async function() {
-	const data = await (await fetch('data/StoreList.json')).json()
-	/*
-	 [
-	 	{
-	 	"name":"",
-	 	"description":"",
-	 	"longitude":"136.1812721",
-	 	"latitude":"35.94731",
-	 	"flg_takeout":"1",
-	 	"flg_delivery":""
-	 	"stores":"https://url_of_store_list.html"
-	 	},
-	 	・・・
-	 ]
-	 */
+	const data = await (await fetch('data/InfoList.json')).json()
 	
 	console.log(data)
-	shuffle(data)
+//	shuffle(data)
 
 	const map = initMap('mapid')
 	map.setZoom(15)
@@ -279,24 +271,32 @@ window.onload = async function() {
 			show()
 		}
 	}
+//	searchbox.value="";
+	
 	let shows = []
 
 	let icons = []
 	const lls = []
 	for (const d of data) {
 		const ll = [ d.latitude, d.longitude ]
-		const iconimg = d.flg_takeout ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
+		const iconimg = 'img/icon_takeout.png'
+//		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
 		if(ll[0]>0) {
-			const icon = map.addIcon(ll[0], ll[1], function(e) {
+			let desc = ""+d.memo+"<br />"+d.datetime;
+			const icon = map.addIcon(ll[0], ll[1], desc, 
+			/*
+				function(e) {
 				const d = e.sourceTarget.data
-				if (shows.indexOf(d.name) >= 0) {
-					document.location.hash = '#' + encodeURIComponent(d.name)
+				if (shows.indexOf(d.indexNo) >= 0) {
+					document.location.hash = '#' + encodeURIComponent(d.indexNo)
 				} else {
 					searchbox.value = ''
 					show(true)
-					document.location.hash = '#' + encodeURIComponent(d.name)
+					document.location.hash = '#' + encodeURIComponent(d.indexNo)
 				}
-			}, iconimg, 48)
+			}, 
+			*/
+			iconimg, 48)
 			icon.data = d
 			icons.push(icon)
 			ll.push(ll)
@@ -324,6 +324,7 @@ window.onload = async function() {
 
 		shows = []
 		A: for (const d of data) {
+/*
 			if (key) {
 				const keys = key.replace(/　/g, ' ').split(' ')
 				for (const k of keys) {
@@ -338,39 +339,39 @@ window.onload = async function() {
 						continue A
 				}
 			}
-			/*
-			if (d.flg_takeout == 1 && !takeout.checked)
-				continue
-			if (d.flg_delivery == 1 && !delivery.checked)
-				continue
-			*/
+*/
 			
 			cnt++
 			const div = create('div')
 			div.className = "item"
 
 			div.innerHTML = `
-				<a name=${encodeURIComponent(d.name)} class=linka>
-				<h2><a href=#${encodeURIComponent(d.name)}>${d.name}</a></h2>
-				<div class=description>${d.description}</div>
+				<a name=${encodeURIComponent(d.memo)} class=linka>
+				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.memo}</a></h2>
+				<div class=description>${d.datetime}</div>
 			`
+/*
 			if(d.latitude>0){
 				div.innerHTML += `
-					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>お店へナビ</a></div>
+					<div class=url><a href=${'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + "," + d.longitude}>ナビ</a></div>
 					</div>
 				`
 			}
-			else {
-				div.innerHTML += `
-					<div class=url><a href=${d.shops} target=_blank>お店情報</a></div>
-					</div>
-				`
-			}
-
-
+*/
 			main.appendChild(div)
 			shows.push(d.name)
 
+			div.querySelector('h2').onclick = function(e) {
+				const indexNo = decodeURIComponent(document.location.hash.substring(1))
+				for (const icon of icons) {
+					if (icon.data.indexNo == indexNo) {
+						const ll = icon.getLatLng()
+						map.setView(ll, 15)
+						break
+					}
+				}
+			}
+/*
 			div.querySelector('h2').onclick = function(e) {
 				const name = decodeURIComponent(document.location.hash.substring(1))
 				for (const icon of icons) {
@@ -381,6 +382,7 @@ window.onload = async function() {
 					}
 				}
 			}
+*/
 
 			if(d.latitude>0){
 				const ll = [ d.latitude, d.longitude ]
@@ -389,7 +391,7 @@ window.onload = async function() {
 		}
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
-			total.textContent = '石川県のお持ち帰りグルメまとめてます #頑張ろう石川グルメ' + ` ${data.length}件`
+			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）`
 	}
 	searchbox.onkeyup = searchbox.onchange = function() {
 		show()
@@ -413,10 +415,13 @@ window.onload = async function() {
 	delivery.onchange = show
 
 	show()
+	
+	/*
 	btngacha.onclick = () => {
-		shuffle(data)
+//		shuffle(data)
 		show()
 	}
+	*/
 }
 </script>
 </head>
@@ -425,25 +430,23 @@ window.onload = async function() {
 <section id="mapid"></section>
 <section id='mainview'>
 
-<h1 id=title>takeout ishikawa<div class=subtitle><div id=subtitle><div id=total></div></div></div></h1>
+<h1 id=title>クマ出没情報<div class=subtitle><div id=subtitle><div id=total></div></div></div></h1>
 <div class="container">
 	<div id="infoEntryMessage">
-<center><strong><a href="https://docs.google.com/forms/d/e/1FAIpQLSdKblEgUfD5_kLHezN_mDFGYGJEXLbpoxI-M7xgI-mr7Uu6AA/viewform" target=_blank>お店の情報提供はこちらにお願いします</a></strong><center>
+<!--
+<center><strong><a href="https://docs.google.com/forms/d/e/1FAIpQLSdKblEgUfD5_kLHezN_mDFGYGJEXLbpoxI-M7xgI-mr7Uu6AA/viewform" target=_blank>情報提供はこちらにお願いします</a></strong><center>
+-->
 	</div>
 <div class="searchboxid">
 	<div class=sitedesc></div>
-	<input type=text id=searchbox placeholder="キーワード"><button id=btngacha>おまかせ</button>
+	<input type=hidden id=searchbox placeholder="キーワード">
+<!--	<input type=text id=searchbox placeholder="キーワード"><button id=btngacha type=hidden>おまかせ</button> -->
 </div>
 <div id="toptags" class=tags></div>
 <div id="checekboxes">
-	<!--
-	<div id=total></div>
-	<label><input type=checkbox id=takeout checked>テイクアウト</label>
-	<label><input type=checkbox id=delivery checked>デリバリー</label>
-	 -->
 	<label><input type=hidden id=takeout checked></label>
 	<label><input type=hidden id=delivery checked></label>
-	<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Falohayos.github.io%2Ftakeout-navi%2F&layout=button_count&size=small&appId=184215061602479&width=80&height=20" width="80" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+	<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Falohayos.github.io%2Fkumamapi%2F&layout=button_count&size=small&appId=184215061602479&width=80&height=20" width="80" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 </div>
@@ -452,16 +455,16 @@ window.onload = async function() {
 <div id="note"></div>
 
 <div id="src">
-<small>情報の更新に努めていますが、掲載日と現時点では情報が異なっている場合もあります。ご利用の際にお店へ電話するなど再確認することをお奨めします。</small>
+<small>情報の更新に努めていますが掲載日と現時点では情報が異なっている場合もあります</small>
 <br>
 <br>
-Data: information by courtesy of take_out_i（<a href=https://twitter.com/take_out_i>Twitter</a> / <a href=https://www.facebook.com/takeout.i/>Facebook</a>）and other supporters.<br>
-App：TakeOut Ishikawa - <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://github.com/alohayos>Yos</a> <a href='https://twitter.com/alohayos'>@alohayos</a> (<a href=https://github.com/AlohaYos/alohayos.github.io>src on GitHub</a>)<br>
+Data: 石川・金沢の防災情報（<a href=https://twitter.com/kanazawa_bosai>Twitter</a>）and other supporters.<br>
+App：Ishikawa Kuma map - <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://github.com/alohayos>Yos</a> <a href='https://twitter.com/alohayos'>@alohayos</a> (<a href=https://github.com/AlohaYos/alohayos.github.io>src on GitHub</a>)<br>
  　- original <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://www.code4japan.org/>Code for Fukui</a> <a href='https://fukuno.jig.jp/'>@taisukef</a> (<a href=https://github.com/code4fukui/takeoutfukui>src on GitHub</a>)<br>
 </div>
 
 <div id='share'>
-<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Falohayos.github.io%2Ftakeout-navi%2F&layout=button_count&size=small&appId=184215061602479&width=80&height=20" width="80" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Falohayos.github.io%2Fkumamap%2F&layout=button_count&size=small&appId=184215061602479&width=80&height=20" width="80" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 	<div id=qrcodecontainer><img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script>
