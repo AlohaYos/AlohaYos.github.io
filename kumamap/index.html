@@ -253,13 +253,16 @@ h2 {
 </style>
 <script>"use strict"
 
+var map
+
 window.onload = async function() {
 	const data = await (await fetch('data/InfoList.json')).json()
 	
 	console.log(data)
 //	shuffle(data)
 
-	const map = initMap('mapid')
+	map = initMap('mapid')
+//	const map = initMap('mapid')
 	map.setZoom(15)
 	map.panTo([ 36.5780, 136.6482 ]) 	// 金沢駅
 
@@ -305,7 +308,6 @@ window.onload = async function() {
 	}
 	if (lls.length > 0)
 		map.fitBounds(lls)
-
 
 	const items = []
 	const show = function(noupdatemap) {
@@ -390,9 +392,16 @@ window.onload = async function() {
 				lls.push(ll)
 			}
 		}
+		
+		if (typeof navigator.geolocation === 'undefined') {
+		}
+		else {
+			subPosGet();
+		}
+
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
-			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）`
+			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）`;
 	}
 	searchbox.onkeyup = searchbox.onchange = function() {
 		show()
@@ -424,6 +433,33 @@ window.onload = async function() {
 	}
 	*/
 }
+
+
+function subGetOk(argPos){
+//	total.textContent = '現在地　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
+	map.addIcon(argPos.coords.latitude, argPos.coords.longitude, "現在地", 'img/icon_delivery.png', 48);
+}
+
+function subGetErr(argErr){
+    var wErrMsg = "";
+    switch(argErr.code){
+        case 1 : wErrMsg = "位置情報の利用が許可されていません";break;
+        case 2 : wErrMsg = "デバイスの位置が判定できません";break;
+        case 3 : wErrMsg = "タイムアウトしました";break;
+    }
+    if(wErrMsg == ""){wErrMsg = argErr.message;} 
+//    total.textContent = wErrMsg;
+}
+
+function subPosGet(){
+	var wOptions = {
+		"enableHighAccuracy": true,	// true : 高精度
+		"timeout": 10000,						// タイムアウト : ミリ秒
+		"maximumAge": 0,					// データをキャッシュ時間 : ミリ秒
+	};
+	navigator.geolocation.getCurrentPosition(subGetOk, subGetErr, wOptions );
+}
+
 </script>
 </head>
 <body>
