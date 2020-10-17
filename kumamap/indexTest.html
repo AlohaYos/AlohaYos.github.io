@@ -437,12 +437,12 @@ window.onload = async function() {
 
 function cmanGetOk(argPos){
 
-	total.textContent = '現在地　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
+	total.textContent = '現在　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
 
 	const map = initMap('mapid')
 	let desc = "現在地"
 	const geoiconimg = 'img/icon_delivery.png'
-	const icon = map.addIcon(lat, lon, desc, geoiconimg, 48)
+	const icon = map.addIcon(argPos.coords.latitude, argPos.coords.longitude, desc, geoiconimg, 48)
 }
 
 function cmanGetErr(argErr){
