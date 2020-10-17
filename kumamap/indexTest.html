@@ -253,13 +253,16 @@ h2 {
 </style>
 <script>"use strict"
 
+var map
+
 window.onload = async function() {
 	const data = await (await fetch('data/InfoList.json')).json()
 	
 	console.log(data)
 //	shuffle(data)
 
-	const map = initMap('mapid')
+	map = initMap('mapid')
+//	const map = initMap('mapid')
 	map.setZoom(15)
 	map.panTo([ 36.5780, 136.6482 ]) 	// 金沢駅
 
@@ -440,7 +443,6 @@ function cmanGetOk(argPos){
 	map.addIcon(36.5260378, 136.6143444, "現在地", 'img/icon_delivery.png', 48);
 return;
 
-	const map = initMap('mapid')
 	let desc = "現在地"
 	const geoiconimg = 'img/icon_delivery.png'
 	const icon = map.addIcon(argPos.coords.latitude, argPos.coords.longitude, desc, geoiconimg, 48)
