@@ -282,11 +282,12 @@ window.onload = async function() {
 	let icons = []
 	const lls = []
 	for (const d of data) {
+		var datetimeMod = '<' + d.infotype + '> ' + d.datatime;
 		const ll = [ d.latitude, d.longitude ]
 		const iconimg = 'img/icon_takeout.png'
 //		const iconimg = d.type ? 'img/icon_takeout.png' : 'img/icon_delivery.png'
 		if(ll[0]>0) {
-			let desc = ""+d.memo+"<br />"+d.datetime;
+			let desc = ""+d.memo+"<br />"+datetimeMod;
 			const icon = map.addIcon(ll[0], ll[1], desc, 
 			/*
 				function(e) {
