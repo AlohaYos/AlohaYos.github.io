@@ -390,9 +390,15 @@ window.onload = async function() {
 				lls.push(ll)
 			}
 		}
+		
+		var geo = 'GeoOK';
+		if (typeof navigator.geolocation === 'undefined') {
+			geo = 'GeoNG';
+		}
+
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
-			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）`
+			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）` + geo;
 	}
 	searchbox.onkeyup = searchbox.onchange = function() {
 		show()
