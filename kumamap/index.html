@@ -349,6 +349,8 @@ window.onload = async function() {
 			const div = create('div')
 			div.className = "item"
 
+			var datetimeMod = '<' + d.infotype + '> ' + d.datetime;
+
 			div.innerHTML = `
 				<a name=${encodeURIComponent(d.memo)} class=linka>
 				<h2><a href=#${encodeURIComponent(d.indexNo)}>${d.memo}</a></h2>
