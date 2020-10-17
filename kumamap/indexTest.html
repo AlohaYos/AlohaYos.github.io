@@ -436,14 +436,8 @@ window.onload = async function() {
 
 
 function subGetOk(argPos){
-
-	total.textContent = '現在地　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
+//	total.textContent = '現在地　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
 	map.addIcon(argPos.coords.latitude, argPos.coords.longitude, "現在地", 'img/icon_delivery.png', 48);
-	return;
-
-	let desc = "現在地"
-	const geoiconimg = 'img/icon_delivery.png'
-	const icon = map.addIcon(argPos.coords.latitude, argPos.coords.longitude, desc, geoiconimg, 48)
 }
 
 function subGetErr(argErr){
@@ -454,14 +448,14 @@ function subGetErr(argErr){
         case 3 : wErrMsg = "タイムアウトしました";break;
     }
     if(wErrMsg == ""){wErrMsg = argErr.message;} 
-    total.textContent = wErrMsg;
+//    total.textContent = wErrMsg;
 }
 
 function subPosGet(){
 	var wOptions = {
-		"enableHighAccuracy": true,                       // true : 高精度
-		"timeout": 10000,                                 // タイムアウト : ミリ秒
-		"maximumAge": 0,                                  // データをキャッシュ時間 : ミリ秒
+		"enableHighAccuracy": true,	// true : 高精度
+		"timeout": 10000,						// タイムアウト : ミリ秒
+		"maximumAge": 0,					// データをキャッシュ時間 : ミリ秒
 	};
 	navigator.geolocation.getCurrentPosition(subGetOk, subGetErr, wOptions );
 }
