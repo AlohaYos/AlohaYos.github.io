@@ -306,9 +306,6 @@ window.onload = async function() {
 	if (lls.length > 0)
 		map.fitBounds(lls)
 
-	map.addIcon(36.5260378, 136.6143444, "現在地", 'img/icon_delivery.png', 48);
-
-
 	const items = []
 	const show = function(noupdatemap) {
 		const key = searchbox.value
@@ -440,6 +437,8 @@ window.onload = async function() {
 function cmanGetOk(argPos){
 
 	total.textContent = '現在　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
+	map.addIcon(36.5260378, 136.6143444, "現在地", 'img/icon_delivery.png', 48);
+return;
 
 	const map = initMap('mapid')
 	let desc = "現在地"
