@@ -395,6 +395,9 @@ window.onload = async function() {
 		if (typeof navigator.geolocation === 'undefined') {
 			geo = 'GeoNG';
 		}
+		else {
+			cmanPosGet();
+		}
 
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
@@ -430,6 +433,35 @@ window.onload = async function() {
 	}
 	*/
 }
+
+
+function cmanGetOk(argPos){
+
+	total.textContent = 'Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
+
+}
+
+function cmanGetErr(argErr){
+    var wErrMsg = "";
+    switch(argErr.code){
+        case 1 : wErrMsg = "位置情報の利用が許可されていません";break;
+        case 2 : wErrMsg = "デバイスの位置が判定できません";break;
+        case 3 : wErrMsg = "タイムアウトしました";break;
+    }
+    if(wErrMsg == ""){wErrMsg = argErr.message;} 
+
+    total.textContent = wErrMsg;
+}
+
+function cmanPosGet(){
+	var wOptions = {
+		"enableHighAccuracy": true,                       // true : 高精度
+		"timeout": 10000,                                 // タイムアウト : ミリ秒
+		"maximumAge": 0,                                  // データをキャッシュ時間 : ミリ秒
+	};
+	navigator.geolocation.getCurrentPosition(cmanGetOk, cmanGetErr, wOptions );
+}
+
 </script>
 </head>
 <body>
