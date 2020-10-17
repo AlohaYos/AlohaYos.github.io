@@ -393,17 +393,15 @@ window.onload = async function() {
 			}
 		}
 		
-		var geo = 'GeoOK';
 		if (typeof navigator.geolocation === 'undefined') {
-			geo = 'GeoNG';
 		}
 		else {
-			cmanPosGet();
+			subPosGet();
 		}
 
 		if (lls.length > 0 && !noupdatemap)
 			map.fitBounds(lls)
-			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）` + geo;
+			total.textContent = '（イノシシ、サルなどの情報も含みます　情報件数' + ` ${data.length}件）`;
 	}
 	searchbox.onkeyup = searchbox.onchange = function() {
 		show()
@@ -437,18 +435,18 @@ window.onload = async function() {
 }
 
 
-function cmanGetOk(argPos){
+function subGetOk(argPos){
 
-	total.textContent = '現在　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
-	map.addIcon(36.5260378, 136.6143444, "現在地", 'img/icon_delivery.png', 48);
-return;
+	total.textContent = '現在地　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
+	map.addIcon(argPos.coords.latitude, argPos.coords.longitude, "現在地", 'img/icon_delivery.png', 48);
+	return;
 
 	let desc = "現在地"
 	const geoiconimg = 'img/icon_delivery.png'
 	const icon = map.addIcon(argPos.coords.latitude, argPos.coords.longitude, desc, geoiconimg, 48)
 }
 
-function cmanGetErr(argErr){
+function subGetErr(argErr){
     var wErrMsg = "";
     switch(argErr.code){
         case 1 : wErrMsg = "位置情報の利用が許可されていません";break;
@@ -459,13 +457,13 @@ function cmanGetErr(argErr){
     total.textContent = wErrMsg;
 }
 
-function cmanPosGet(){
+function subPosGet(){
 	var wOptions = {
 		"enableHighAccuracy": true,                       // true : 高精度
 		"timeout": 10000,                                 // タイムアウト : ミリ秒
 		"maximumAge": 0,                                  // データをキャッシュ時間 : ミリ秒
 	};
-	navigator.geolocation.getCurrentPosition(cmanGetOk, cmanGetErr, wOptions );
+	navigator.geolocation.getCurrentPosition(subGetOk, subGetErr, wOptions );
 }
 
 </script>
