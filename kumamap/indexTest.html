@@ -439,6 +439,7 @@ function cmanGetOk(argPos){
 
 	total.textContent = '現在地　Lat:' + argPos.coords.latitude + ' Lon:' + argPos.coords.longitude;
 
+	const map = initMap('mapid')
 	let desc = "現在地"
 	const geoiconimg = 'img/icon_delivery.png'
 	const icon = map.addIcon(lat, lon, desc, geoiconimg, 48)
