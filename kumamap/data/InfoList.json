@@ -1,5 +1,11 @@
 [
-{"datetime":"2020/11/4 20:00:00","infotype":"目撃","memo":"窪3丁目 クマ1頭（1.0m程度）","longitude":"0136.6436162","latitude":"036.5226982","indexNo":"216"},
+{"datetime":"2020/11/6 4:30:00","infotype":"目撃","memo":"末町 クマ1頭（1.0m程度）","longitude":"0136.69038010161194","latitude":"036.514299136961675","indexNo":"222"},
+{"datetime":"2020/11/5 20:30:00","infotype":"目撃","memo":"卯辰山工芸工房 イノシシ１頭（幼獣）","longitude":"0136.67571544647217","latitude":"036.57356068252619","indexNo":"221"},
+{"datetime":"2020/11/5 18:15:00","infotype":"目撃","memo":"末町 クマ１頭（成獣）","longitude":"0136.68791669301928","latitude":"036.51454967437455","indexNo":"220"},
+{"datetime":"2020/11/5 9:00:00","infotype":"痕跡","memo":"上中町 果樹被害","longitude":"0136.7021541","latitude":"036.5190212","indexNo":"219"},
+{"datetime":"2020/11/5 8:45:00","infotype":"痕跡","memo":"鳴和台市民公園 イノシシの足跡","longitude":"0136.6786659953523","latitude":"036.57726127896701","indexNo":"218"},
+{"datetime":"2020/11/5 7:39:00","infotype":"痕跡","memo":"末町 糞を発見","longitude":"0136.68257020545545","latitude":"036.52129640793617","indexNo":"217"},
+{"datetime":"2020/11/4 20:00:00","infotype":"目撃","memo":"窪3丁目 クマ1頭（1.0m程度）","longitude":136.6436162,"latitude":36.5226982,"indexNo":"216"},
 {"datetime":"2020/11/3 18:18:00","infotype":"目撃","memo":"鶴来 金劔宮 子グマ１頭","longitude":136.628802,"latitude":36.449477,"indexNo":"215"},
 {"datetime":"2020/11/3 17:05:00","infotype":"目撃","memo":"夕日寺町 クマ１頭（１m程度）","longitude":136.7100424,"latitude":36.5715394,"indexNo":"214"},
 {"datetime":"2020/11/3 13:30:00","infotype":"目撃","memo":"北陸大学 クマ１頭（１m程度）","longitude":136.7085712,"latitude":36.524603,"indexNo":"213"},
