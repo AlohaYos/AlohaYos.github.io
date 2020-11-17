@@ -1,8 +1,9 @@
 [
-{"datetime":"2020/11/16 20:00:00","infotype":"目撃","memo":"大桑町 クマ1頭（1.0m程度）","longitude":"0136.68720482159907","latitude":"036.52914880240334","indexNo":"267"},
-{"datetime":"2020/11/16 16:45:00","infotype":"目撃","memo":"清水谷町 クマ１頭（1.2m程度）","longitude":"0136.7656533096684","latitude":"036.59579619311532","indexNo":"266"},
-{"datetime":"2020/11/16 13:00:00","infotype":"痕跡","memo":"大桑町 果樹被害","longitude":"0136.6764113","latitude":"036.5263562","indexNo":"265"},
-{"datetime":"2020/11/16 9:00:00","infotype":"目撃","memo":"末町 クマ2頭（親子）","longitude":"0136.6882187","latitude":"036.5130177","indexNo":"264"},
+{"datetime":"2020/11/17 7:00:00","infotype":"痕跡","memo":"折谷町 柿の木の枝折れ","longitude":"0136.76276025261666","latitude":"036.5102021284147","indexNo":"268"},
+{"datetime":"2020/11/16 20:00:00","infotype":"目撃","memo":"大桑町 クマ1頭（1.0m程度）","longitude":136.687204821599,"latitude":36.5291488024033,"indexNo":"267"},
+{"datetime":"2020/11/16 16:45:00","infotype":"目撃","memo":"清水谷町 クマ１頭（1.2m程度）","longitude":136.765653309668,"latitude":36.5957961931153,"indexNo":"266"},
+{"datetime":"2020/11/16 13:00:00","infotype":"痕跡","memo":"大桑町 果樹被害","longitude":136.6764113,"latitude":36.5263562,"indexNo":"265"},
+{"datetime":"2020/11/16 9:00:00","infotype":"目撃","memo":"末町 クマ2頭（親子）","longitude":136.6882187,"latitude":36.5130177,"indexNo":"264"},
 {"datetime":"2020/11/14 18:15:00","infotype":"目撃","memo":"鳴和台 イノシシ１頭（幼獣）","longitude":136.678879069009,"latitude":36.5789841102788,"indexNo":"263"},
 {"datetime":"2020/11/14 16:35:00","infotype":"目撃","memo":"俵町 クマ2頭（1.0m程度）","longitude":136.7274228,"latitude":36.5358749,"indexNo":"262"},
 {"datetime":"2020/11/14 11:00:00","infotype":"痕跡","memo":"末町 柿の木被害","longitude":136.692694615958,"latitude":36.5130211461582,"indexNo":"261"},
